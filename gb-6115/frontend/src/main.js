@@ -6,6 +6,7 @@ import { el } from "./utils/dom.js";
 import { login } from "./pages/login.js";
 import { overview } from "./pages/overview.js";
 import { casesPage } from "./pages/cases.js";
+import { batchesPage } from "./pages/batches.js";
 import { runsPage } from "./pages/runs.js";
 import { evidencePage } from "./pages/evidence.js";
 
@@ -34,6 +35,7 @@ async function refresh() {
     const pages = {
       overview: () => overview(config),
       cases: () => casesPage(config, user, route),
+      batches: () => batchesPage(config, user),
       runs: () => runsPage(config, route, token.signal),
       evidence: () => evidencePage(config, user, route),
     };

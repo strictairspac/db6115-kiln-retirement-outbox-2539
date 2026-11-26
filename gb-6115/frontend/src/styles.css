@@ -115,3 +115,53 @@ td a[aria-current=true] { font-weight: 750; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ---- 炉体退役批次 · 放行判定看板 ---- */
+.release-board { display: grid; gap: .9rem; border-top: var(--rail-size) solid var(--accent); }
+.release-board-head { display: grid; gap: .45rem; }
+.release-board .rule { color: var(--muted); font-size: .92rem; max-width: 110ch; }
+.board-feedback { min-height: 1.4rem; font-weight: 650; }
+.board-feedback[data-tone="error"] { color: var(--signal); }
+.board-feedback[data-tone="ok"] { color: var(--accent); }
+.board-summary { display: flex; flex-wrap: wrap; gap: .55rem; }
+.chip { background: var(--tint); border: 1px solid var(--rule); padding: .28rem .7rem; font-size: .86rem; font-weight: 650; border-radius: 999px; }
+.chip-shortage { color: var(--signal); border-color: currentColor; }
+.chip-released { color: var(--accent); }
+.board-subhead { margin-top: .6rem; padding-top: .8rem; border-top: 1px dashed var(--rule); }
+.cell-code { min-width: 9rem; }
+.cell-code small { display: block; color: var(--muted); font-weight: 400; }
+.code-tag { font-family: "IBM Plex Mono", Menlo, monospace; font-size: .82em; background: var(--tint); padding: .05rem .35rem; border-radius: 2px; white-space: nowrap; }
+.cell-shortage { min-width: 11rem; }
+.verdict-text { display: block; color: var(--muted); font-size: .8rem; margin-top: .25rem; max-width: 34ch; }
+.shortage { display: inline-block; font-weight: 750; color: #fff; background: var(--signal); padding: .22rem .6rem; border-radius: 999px; white-space: nowrap; }
+.shortage b { font-size: 1.05em; margin: 0 .15em; }
+.margin-ok { color: var(--accent); font-weight: 650; white-space: nowrap; }
+.release-status { white-space: nowrap; }
+.state-pending { color: #8a5a00; }
+.state-released { color: #1d5c8a; }
+.state-restored { color: #2e7d46; }
+.row-actions { display: flex; flex-wrap: wrap; gap: .4rem; }
+.row-actions button { padding: .34rem .6rem; font-size: .84rem; }
+button.primary { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+button.danger { background: var(--signal); border-color: var(--signal); color: #fff; }
+button.tiny { padding: .2rem .5rem; font-size: .78rem; }
+.readonly-hint, .done-hint { color: var(--muted); font-size: .84rem; }
+.line-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr)); gap: .9rem; }
+.panel-inner { background: var(--paper); border: 1px solid var(--rule); border-radius: var(--radius); padding: .9rem; min-width: 0; display: grid; gap: .55rem; }
+.line-card header h3 { margin: 0; font-size: 1.02rem; }
+.line-note { color: var(--muted); font-size: .84rem; }
+.usable-line b { font-size: 1.25rem; color: var(--accent); }
+.count-chips { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; margin: 0; padding: 0; }
+.count-chips li { font-size: .78rem; color: var(--muted); border: 1px solid var(--rule); padding: .12rem .5rem; border-radius: 999px; }
+.oven-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .4rem; }
+.oven-chip { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; border: 1px solid var(--rule); background: var(--surface); padding: .4rem .55rem; border-radius: var(--radius); }
+.oven-code { font-family: "IBM Plex Mono", Menlo, monospace; font-weight: 700; }
+.oven-state { font-size: .78rem; font-weight: 650; padding: .1rem .45rem; background: var(--tint); border-left-width: .16rem; }
+.oven-actions { margin-left: auto; display: flex; gap: .35rem; }
+.oven-pending_acceptance { border-style: dashed; }
+.oven-delivery_failed { border-color: var(--signal); }
+.board-forms { border-top: 1px dashed var(--rule); padding-top: .7rem; }
+.inline-form { display: grid; gap: .6rem; margin: .8rem 0; }
+.form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: .7rem; }
+.inline-form .feedback { margin: 0; }
+.batches-page .release-board { border-top: 0; padding: 0; }

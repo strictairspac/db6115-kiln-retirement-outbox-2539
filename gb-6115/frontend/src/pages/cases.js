@@ -1,4 +1,5 @@
 import { api } from "../api/workbench.js";
+import { retirementBoard } from "../components/retirement-board.js";
 import { errorText, field } from "../components/common/fields.js";
 import { empty, pageHeading, section } from "../components/common/panel.js";
 import { table } from "../components/common/table.js";
@@ -45,7 +46,11 @@ export async function casesPage(config, user, route) {
   const selected = cases.find(item => item.id === route.id) ?? cases.at(-1);
   const operator = user.role === "operator";
   return el("div", {class: "page"},
-    pageHeading(config.modules[1], `${config.unit} · ${config.fixture}`),
+    pageHeading(config.modules[1], [
+      "每条产线保留一台可用烘箱 · 放行判定与缺口补足；下方为证书交卷演练资料 ",
+      el("code", {}, config.fixture),
+    ], el("a", {class: "button", href: "#batches"}, "放行台账专页")),
+    retirementBoard(user),
     section("资料目录", cases.length ? table(["编号", "名称", "说明", "操作"], cases.map(item =>
       [item.code, item.title, item.description,
         el("a", {href: `#cases/${item.id}`, "aria-current": item.id === selected?.id ? "true" : null}, "选用")]), "资料目录") :

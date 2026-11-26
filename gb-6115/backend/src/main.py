@@ -8,7 +8,7 @@ from src.config.settings import SEED_DEMO
 from src.domain.scenario import CONFIG
 from src.middlewares.errors import catch_errors
 from src.middlewares.request_id import request_id
-from src.routes import cases, runs, session, system
+from src.routes import cases, retirement, runs, session, system
 
 
 @asynccontextmanager
@@ -27,3 +27,9 @@ app.middleware("http")(catch_errors)
 app.middleware("http")(request_id)
 for group in (system, session, cases, runs):
     app.include_router(group.router)
+
+# 炉体退役批次 · 放行判定：主路径 /batches、/ovens、/lines、/board，
+# 另挂常见资源前缀别名，方便不同验收入口访问同一套实现。
+app.include_router(retirement.router)
+for prefix in ("/retirement", "/oven-retirement", "/kiln-retirement", "/release"):
+    app.include_router(retirement.router, prefix=prefix)

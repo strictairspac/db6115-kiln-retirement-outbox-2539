@@ -33,3 +33,11 @@ def require_role(role):
 
 operator = require_role(Role.OPERATOR)
 reviewer = require_role(Role.REVIEWER)
+
+
+def staff(credentials: Annotated[HTTPAuthorizationCredentials | None, Depends(bearer)]):
+    """退役放行办理：资料操作员与业务复核员（设备组确认）均可，观察员只读。"""
+    user = identity(credentials)
+    if user["role"] == Role.VIEWER:
+        raise HTTPException(403, "只读观察员不能办理此操作")
+    return user

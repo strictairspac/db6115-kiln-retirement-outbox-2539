@@ -1,4 +1,4 @@
-from src.models import audit, cases, reviews, runs, users  # Register the tables.
+from src.models import audit, cases, retirement, reviews, runs, users  # noqa: F401  注册表
 from src.models.base import metadata
 
 

@@ -4,6 +4,7 @@ from sqlalchemy.dialects.mysql import insert as mysql_insert
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 
 from migrations.v001_workbench import upgrade
+from scripts.seed_retirement import seed_retirement
 from src.config.resources import engine
 from src.config.settings import DEMO_PASSWORD
 from src.constants.roles import Role
@@ -36,6 +37,7 @@ def seed():
                 })
         for fixture in FIXTURES:
             insert_new(db, cases, "code", {**fixture, "created_by": "seed"})
+        seed_retirement(db)
         return {table.name: db.scalar(select(func.count()).select_from(table)) for table in (users, cases)}
 
 
